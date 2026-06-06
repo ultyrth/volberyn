@@ -1,0 +1,382 @@
+CO2217 PYTHON PRACTICAL CODES - PRACTICAL 1 TO 12
+Short instructions + clean runnable codes
+
+============================================================
+PRACTICAL 1: Even/Odd Check and Multiplication Table
+============================================================
+Instruction:
+Take a number from the user. Check whether it is even or odd. Then print its table from 1 to 10.
+
+Code:
+num = int(input("Enter the number: "))
+
+if num % 2 == 0:
+    print("Given number is even")
+else:
+    print("Given number is odd")
+
+print("Multiplication table of", num)
+for i in range(1, 11):
+    print(num, "x", i, "=", num * i)
+
+
+============================================================
+PRACTICAL 2: List and Dictionary - Highest Marks
+============================================================
+Instruction:
+Create a list of five student names and display them. Then create a dictionary of names and marks and find the topper.
+
+Code:
+students = ["Soham", "Sahil", "Rahul", "Riya", "Rohan"]
+
+print("Student names:")
+for name in students:
+    print(name)
+
+marks = {
+    "Soham": 78,
+    "Sahil": 72,
+    "Rahul": 92,
+    "Riya": 91,
+    "Rohan": 84
+}
+
+print("\nStudent marks:")
+for student in marks:
+    print(student, ":", marks[student])
+
+highest = max(marks.values())
+topper = max(marks, key=marks.get)
+
+print("Highest marks is:", highest)
+print("Topper name is:", topper)
+
+
+============================================================
+PRACTICAL 3: Simple Interest and Recursive Factorial
+============================================================
+Instruction:
+Use a function to calculate simple interest. Then use recursion to calculate factorial.
+
+Code:
+def simple_interest(principal, rate, time):
+    return (principal * rate * time) / 100
+
+p = float(input("Enter principal amount: "))
+r = float(input("Enter rate of interest: "))
+t = int(input("Enter time in years: "))
+
+si = simple_interest(p, r, t)
+print("Simple Interest =", si)
+
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+num = int(input("Enter a number for factorial: "))
+print("Factorial =", factorial(num))
+
+
+============================================================
+PRACTICAL 4: User-defined Module and Date Operations
+============================================================
+Instruction:
+Create a module math_utils.py with square() and cube(). Then import it in main.py. Also take date of birth and calculate age, birth day, and days left for next birthday.
+
+File 1: math_utils.py
+Code:
+def square(n):
+    return n ** 2
+
+
+def cube(n):
+    return n ** 3
+
+
+File 2: main.py
+Code:
+import math_utils as f
+from datetime import date, datetime
+
+n = int(input("Enter number: "))
+print(f"The square of {n} is {f.square(n)}")
+print(f"The cube of {n} is {f.cube(n)}")
+
+dob = input("Enter date of birth in DD-MM-YYYY format: ")
+birthdate = datetime.strptime(dob, "%d-%m-%Y").date()
+today = date.today()
+
+age = today.year - birthdate.year
+if (today.month, today.day) < (birthdate.month, birthdate.day):
+    age -= 1
+
+print("Age:", age)
+print("Day of birth:", birthdate.strftime("%A"))
+
+next_birthday = birthdate.replace(year=today.year)
+if next_birthday < today:
+    next_birthday = next_birthday.replace(year=today.year + 1)
+
+days_left = (next_birthday - today).days
+print("Days left until next birthday:", days_left)
+
+
+============================================================
+PRACTICAL 5: Class and Object - Student Details
+============================================================
+Instruction:
+Create a Student class with name and roll number. Create objects and display details.
+
+Code:
+class Student:
+    def __init__(self, name, roll_no):
+        self.name = name
+        self.roll_no = roll_no
+
+    def display(self):
+        print(f"Name: {self.name}, Roll No: {self.roll_no}")
+
+
+s1 = Student("Soham", 40)
+s2 = Student("Sahil", 4)
+s3 = Student("Rahul", 1)
+s4 = Student("Riya", 22)
+s5 = Student("Rohan", 10)
+
+s1.display()
+s2.display()
+s3.display()
+s4.display()
+s5.display()
+
+
+============================================================
+PRACTICAL 6: File Handling with Exception Handling
+============================================================
+Instruction:
+Take a string from the user, write it into data.txt, read it back, and handle errors safely.
+
+Code:
+try:
+    text = input("Enter the string to be entered: ")
+
+    with open("data.txt", "w") as file:
+        file.write(text + "\n")
+
+    with open("data.txt", "r") as file:
+        content = file.read()
+
+    print("File content:")
+    print(content)
+
+except FileNotFoundError:
+    print("File not found")
+except IOError:
+    print("Input/output error occurred")
+except Exception as e:
+    print("Error occurred:", e)
+
+
+============================================================
+PRACTICAL 7: Regular Expressions - Email, Mobile Numbers, Whitespace
+============================================================
+Instruction:
+Validate an email address, extract mobile numbers, and replace all whitespace in a sentence with hyphen.
+
+Code:
+import re
+
+
+def validate_email(email):
+    pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
+    if re.match(pattern, email):
+        print("Valid email address")
+    else:
+        print("Invalid email address")
+
+
+email = input("Enter an email address: ")
+validate_email(email)
+
+text = """Soham:9876543210 Sohil:8765432109 Rahul:7654321098 Roham:6543210987"""
+mobile_pattern = r'\b[6-9]\d{9}\b'
+numbers = re.findall(mobile_pattern, text)
+
+print("\nMobile numbers found:")
+for num in numbers:
+    print(num)
+
+sentence = input("\nEnter a sentence: ")
+result = re.sub(r'\s+', '-', sentence)
+print("Modified sentence:", result)
+
+
+============================================================
+PRACTICAL 8: NumPy Array Operations
+============================================================
+Instruction:
+Create a NumPy array of 5 elements. Display it, add 5 to each element, find mean, and sort it.
+
+Code:
+import numpy as np
+
+arr = np.array([12, 4, 15, 8, 20])
+print("Original Array:", arr)
+
+arr_add = arr + 5
+print("Array after addition:", arr_add)
+
+mean_val = np.mean(arr)
+print("Mean of the array:", mean_val)
+
+sorted_arr = np.sort(arr)
+print("Sorted Array:", sorted_arr)
+
+
+============================================================
+PRACTICAL 9: Pandas DataFrame and Average Salary
+============================================================
+Instruction:
+Create a DataFrame from employee names and salaries. Display it and calculate average salary.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya", "Rohan"],
+    "Salary": [72000, 75000, 78000, 71000, 79000]
+}
+
+df = pd.DataFrame(data)
+
+print("Employee DataFrame:")
+print(df)
+
+average_salary = df["Salary"].mean()
+print("\nAverage Salary =", average_salary)
+
+
+============================================================
+PRACTICAL 10: Matplotlib Bar Chart
+============================================================
+Instruction:
+Draw a bar chart showing marks of 5 subjects with labels and title.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.bar(subjects, marks)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks of 5 Subjects")
+plt.show()
+
+
+============================================================
+PRACTICAL 11: Check File Existence using os Module
+============================================================
+Instruction:
+Accept multiple filenames from the user and check whether each file exists in the current directory.
+
+Code:
+import os
+
+
+def file_check_list():
+    user_input = input("Enter filenames separated by space or comma: ")
+    filenames = [name.strip() for name in user_input.replace(',', ' ').split() if name.strip()]
+
+    if not filenames:
+        print("No file names provided")
+        return
+
+    for filename in filenames:
+        print("-" * 30)
+        if os.path.isfile(filename):
+            print("Full Path:", os.path.abspath(filename))
+            print(filename, "exists")
+        else:
+            print(filename, "could not be found/opened")
+
+
+if __name__ == "__main__":
+    file_check_list()
+
+
+============================================================
+PRACTICAL 12: Student Record Keeper using Dictionary and Functions
+============================================================
+Instruction:
+Create a menu-driven student record keeper. Store name and marks using a dictionary. Allow add, search, delete, and display operations.
+
+Code:
+def add_record(records):
+    name = input("Enter student name: ")
+    marks = int(input(f"Enter marks for {name}: "))
+    records[name] = marks
+    print(f"Record added: {name} ({marks} marks)")
+
+
+def search_record(records):
+    name = input("Enter student name to search: ")
+    if name in records:
+        print(f"Found: {name} has {records[name]} marks")
+    else:
+        print(f"Record for {name} not found")
+
+
+def delete_record(records):
+    name = input("Enter student name to delete: ")
+    if name in records:
+        del records[name]
+        print(f"Record for {name} deleted successfully")
+    else:
+        print(f"Record for {name} not found")
+
+
+def display_records(records):
+    if not records:
+        print("No records available")
+    else:
+        print("\nCurrent Student Records:")
+        for name, marks in records.items():
+            print(f"Name: {name} | Marks: {marks}")
+
+
+def main():
+    student_records = {}
+
+    while True:
+        print("\n=== Student Record Keeper ===")
+        print("1. Add Record")
+        print("2. Search Record")
+        print("3. Delete Record")
+        print("4. Display All Records")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == "1":
+            add_record(student_records)
+        elif choice == "2":
+            search_record(student_records)
+        elif choice == "3":
+            delete_record(student_records)
+        elif choice == "4":
+            display_records(student_records)
+        elif choice == "5":
+            print("Thank you for using student records")
+            break
+        else:
+            print("Invalid choice! Please select between 1 and 5")
+
+
+if __name__ == "__main__":
+    main()
+
