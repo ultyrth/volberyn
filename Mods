@@ -1,0 +1,776 @@
+CO2217 PYTHON PRACTICAL 1 TO 12 - SYNTAX LIBRARY
+
+============================================================
+PRACTICAL 1 - INPUT, IF-ELSE, FOR LOOP, RANGE
+============================================================
+
+Input syntax:
+
+num = int(input("Enter number: "))
+name = input("Enter name: ")
+price = float(input("Enter price: "))
+
+If block syntax:
+
+if condition:
+    statement
+else:
+    statement
+
+Even/Odd syntax:
+
+num = int(input("Enter number: "))
+if num % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+
+For loop syntax:
+
+for i in range(1, 11):
+    print(i)
+
+Multiplication table syntax:
+
+num = int(input("Enter number: "))
+for i in range(1, 11):
+    print(num, "x", i, "=", num * i)
+
+Full code:
+
+num = int(input("Enter the Number to be Checked whether Even or Odd -> "))
+
+if num % 2 == 0:
+    print("Given number is even number")
+else:
+    print("Given number is odd number")
+
+for i in range(1, 11):
+    print(num * i)
+
+
+============================================================
+PRACTICAL 2 - LIST, DICTIONARY, FOR LOOP, MAX
+============================================================
+
+List syntax:
+
+students = ["Soham", "Sahil", "Rahul", "Riya", "Rohan"]
+
+Loop through list:
+
+for name in students:
+    print(name)
+
+Dictionary syntax:
+
+marks = {
+    "Soham": 78,
+    "Sahil": 72,
+    "Rahul": 92
+}
+
+Access dictionary value:
+
+print(marks["Soham"])
+
+Loop through dictionary keys:
+
+for student in marks:
+    print(student, marks[student])
+
+Loop through dictionary items:
+
+for student, mark in marks.items():
+    print(student, mark)
+
+Highest value syntax:
+
+highest = max(marks.values())
+
+Key having highest value syntax:
+
+topper = max(marks, key=marks.get)
+
+Full code:
+
+Stud = {"Soham": 78, "Sahil": 72, "Rahul": 92, "Riya": 91, "Rohan": 84}
+
+for student in Stud:
+    print(student, ':', Stud[student])
+
+highest = max(Stud.values())
+topper = max(Stud, key=Stud.get)
+
+print("Highest marks is :", highest)
+print("Topper Name is :", topper)
+
+
+============================================================
+PRACTICAL 3 - FUNCTION, PARAMETERS, RETURN, RECURSION
+============================================================
+
+Function syntax:
+
+def function_name():
+    statement
+
+Function with parameters syntax:
+
+def function_name(parameter1, parameter2):
+    statement
+
+Return syntax:
+
+def add(a, b):
+    return a + b
+
+Calling function syntax:
+
+result = add(10, 20)
+print(result)
+
+Simple interest function:
+
+def simple_interest(principal, time, rate):
+    si = (principal * time * rate) / 100
+    return si
+
+Recursion syntax:
+
+def function_name(n):
+    if base_condition:
+        return value
+    else:
+        return function_name(n - 1)
+
+Factorial recursion syntax:
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+Full code:
+
+def simple_interest(principal, time, rate):
+    simple_int = (principal * time * rate) / 100
+    return simple_int
+
+p = float(input("Enter the principal amount: "))
+r = float(input("Enter the rate of interest: "))
+t = int(input("Enter the investment duration in years: "))
+
+print(simple_interest(p, t, r))
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+num = int(input("Enter a number: "))
+print(factorial(num))
+
+
+============================================================
+PRACTICAL 4 - USER MODULE, IMPORT, DATETIME
+============================================================
+
+Module file syntax:
+
+# math_utils.py
+
+def square(n):
+    return n ** 2
+
+def cube(n):
+    return n ** 3
+
+Import module syntax:
+
+import math_utils
+
+Import with alias syntax:
+
+import math_utils as f
+
+Use module function syntax:
+
+answer = f.square(5)
+
+Datetime import syntax:
+
+from datetime import date, datetime
+
+Date input conversion syntax:
+
+dob = input("Enter date of birth in DD-MM-YYYY format: ")
+birthdate = datetime.strptime(dob, "%d-%m-%Y").date()
+
+Today date syntax:
+
+today = date.today()
+
+Age calculation syntax:
+
+age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+
+Day name syntax:
+
+day = birthdate.strftime("%A")
+
+Days left syntax:
+
+nextbirthday = birthdate.replace(year=today.year)
+if nextbirthday < today:
+    nextbirthday = nextbirthday.replace(year=today.year + 1)
+
+daysleft = (nextbirthday - today).days
+
+Full code for math_utils.py:
+
+def square(n):
+    return n ** 2
+
+def cube(n):
+    return n ** 3
+
+Full code for main.py:
+
+import math_utils as f
+from datetime import date, datetime
+
+n = int(input("Enter number: "))
+
+square = f.square(n)
+cube = f.cube(n)
+
+print(f"The square of {n} is {square}")
+print(f"The cube of {n} is {cube}")
+
+dob = input("Enter date of birth in DD-MM-YYYY format: ")
+birthdate = datetime.strptime(dob, "%d-%m-%Y").date()
+today = date.today()
+
+age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+print(f"The age of user is {age}")
+
+dow = birthdate.strftime("%A")
+print(f"You were born on a: {dow}")
+
+nextbirthday = birthdate.replace(year=today.year)
+if nextbirthday < today:
+    nextbirthday = nextbirthday.replace(year=today.year + 1)
+
+daysleft = (nextbirthday - today).days
+print(f"Days left for next birthday: {daysleft}")
+
+
+============================================================
+PRACTICAL 5 - CLASS, OBJECT, CONSTRUCTOR, METHOD
+============================================================
+
+Class syntax:
+
+class ClassName:
+    statement
+
+Constructor syntax:
+
+class ClassName:
+    def __init__(self, value):
+        self.value = value
+
+Method syntax:
+
+class ClassName:
+    def method_name(self):
+        print(self.value)
+
+Object syntax:
+
+obj = ClassName(value)
+
+Call method syntax:
+
+obj.method_name()
+
+Full code:
+
+class Student:
+    def __init__(self, name, rollno):
+        self.name = name
+        self.rollno = rollno
+
+    def display(self):
+        print(f"Name of student : {self.name}, Rollno: {self.rollno}")
+
+s1 = Student("Soham", 40)
+s2 = Student("Sahil", 4)
+s3 = Student("Rahul", 1)
+s4 = Student("Riya", 22)
+s5 = Student("Rohan", 10)
+
+s1.display()
+s2.display()
+s3.display()
+s4.display()
+s5.display()
+
+
+============================================================
+PRACTICAL 6 - FILE HANDLING, TRY-EXCEPT, WITH OPEN
+============================================================
+
+Write file syntax:
+
+with open("file.txt", "w") as f:
+    f.write("Hello")
+
+Append file syntax:
+
+with open("file.txt", "a") as f:
+    f.write("Hello\n")
+
+Read file syntax:
+
+with open("file.txt", "r") as f:
+    data = f.read()
+    print(data)
+
+Try-except syntax:
+
+try:
+    statement
+except:
+    statement
+
+Full code:
+
+stringinput = input("Enter the string to be entered -> ")
+
+try:
+    with open("file.txt", "a") as f:
+        f.write(stringinput + "\n")
+
+    with open("file.txt", "r") as f:
+        print(f.read())
+
+except:
+    print("file not found")
+
+
+============================================================
+PRACTICAL 7 - REGEX, MATCH, FINDALL, SUB
+============================================================
+
+Import regex syntax:
+
+import re
+
+Email pattern syntax:
+
+pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9._]+\.[A-Za-z]{2,}$'
+
+Match syntax:
+
+if re.match(pattern, email):
+    print("Valid")
+else:
+    print("Invalid")
+
+Find all syntax:
+
+numbers = re.findall(pattern, text)
+
+Mobile number pattern syntax:
+
+pattern = r'\b[6-9]\d{9}\b'
+
+Replace syntax:
+
+result = re.sub(r'\s+', '_', sentence)
+
+Full code:
+
+import re
+
+def validate_email(email):
+    pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9._]+\.[A-Za-z]{2,}$'
+    if re.match(pattern, email):
+        print("Valid email address")
+    else:
+        print("Invalid email address")
+
+email = input("Enter an email address: ")
+validate_email(email)
+
+text = """Soham:9876543210 Sohil:8765432109 Rahul:7654321098 Roham:6543210987"""
+pattern = r'\b[6-9]\d{9}\b'
+numbers = re.findall(pattern, text)
+
+print("\nMobile numbers found:")
+for num in numbers:
+    print(num)
+
+sentence = input("\nEnter a sentence: ")
+result = re.sub(r'\s+', '_', sentence)
+print("Modified sentence:", result)
+
+
+============================================================
+PRACTICAL 8 - NUMPY ARRAY, ADDITION, MEAN, SORT
+============================================================
+
+Import NumPy syntax:
+
+import numpy as np
+
+Array syntax:
+
+arr = np.array([12, 4, 15, 8, 20])
+
+Array addition syntax:
+
+arr_add = arr + 5
+
+Mean syntax:
+
+mean_val = np.mean(arr)
+
+Sort syntax:
+
+sorted_arr = np.sort(arr)
+
+Full code:
+
+import numpy as np
+
+arr = np.array([12, 4, 15, 8, 20])
+print("Original Array:", arr)
+
+arr_add = arr + 5
+print("Array after addition:", arr_add)
+
+mean_val = np.mean(arr)
+print("Mean of the array:", mean_val)
+
+sorted_arr = np.sort(arr)
+print("Sorted Array:", sorted_arr)
+
+
+============================================================
+PRACTICAL 9 - PANDAS DATAFRAME, DICTIONARY, MEAN
+============================================================
+
+Import Pandas syntax:
+
+import pandas as pd
+
+Dictionary for table syntax:
+
+data = {
+    "Name": ["A", "B", "C"],
+    "Marks": [80, 90, 85]
+}
+
+DataFrame syntax:
+
+df = pd.DataFrame(data)
+
+Display DataFrame syntax:
+
+print(df)
+
+Column mean syntax:
+
+average = df["Marks"].mean()
+
+Full code:
+
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya", "Rohan"],
+    "Salary": [72000, 75000, 78000, 71000, 79000]
+}
+
+df = pd.DataFrame(data)
+
+print("Employee DataFrame:")
+print(df)
+
+average_salary = df["Salary"].mean()
+print("\nAverage Salary =", average_salary)
+
+
+============================================================
+PRACTICAL 10 - MATPLOTLIB BAR CHART
+============================================================
+
+Import Matplotlib syntax:
+
+import matplotlib.pyplot as plt
+
+Bar chart syntax:
+
+plt.bar(x_values, y_values)
+
+X label syntax:
+
+plt.xlabel("X Axis Name")
+
+Y label syntax:
+
+plt.ylabel("Y Axis Name")
+
+Title syntax:
+
+plt.title("Chart Title")
+
+Show chart syntax:
+
+plt.show()
+
+Full code:
+
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.bar(subjects, marks)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks of 5 Subjects")
+plt.show()
+
+
+============================================================
+PRACTICAL 11 - OS MODULE, FILE CHECK, PATH
+============================================================
+
+Import os syntax:
+
+import os
+
+Take multiple filenames syntax:
+
+user_input = input("Enter filenames: ")
+filenames = user_input.replace(',', ' ').split()
+
+Check file exists syntax:
+
+if os.path.isfile(filename):
+    print("Exists")
+else:
+    print("Not found")
+
+Absolute path syntax:
+
+print(os.path.abspath(filename))
+
+Main function call syntax:
+
+if __name__ == "__main__":
+    function_name()
+
+Full code:
+
+import os
+
+def filechecklist():
+    user_input = input("Give The File Name or List to Search -> ")
+    fname = [name.strip() for name in user_input.replace(',', ' ').split() if name.strip()]
+
+    if not fname:
+        print("No file names provided")
+        return
+
+    for filename in fname:
+        if os.path.isfile(filename):
+            print("-" * 30)
+            print("Full Path:", os.path.abspath(filename))
+            print(filename, "Exists")
+        else:
+            print("-" * 30)
+            print(f"{filename} could not be found/opened")
+
+if __name__ == "__main__":
+    filechecklist()
+
+
+============================================================
+PRACTICAL 12 - DICTIONARY CRUD, FUNCTIONS, WHILE TRUE, MENU
+============================================================
+
+Empty dictionary syntax:
+
+records = {}
+
+Add dictionary record syntax:
+
+records[name] = marks
+
+Search dictionary syntax:
+
+if name in records:
+    print(records[name])
+else:
+    print("Not found")
+
+Delete dictionary record syntax:
+
+del records[name]
+
+While True menu syntax:
+
+while True:
+    print("1. Add")
+    print("2. Exit")
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        statement
+    elif choice == "2":
+        break
+    else:
+        print("Invalid choice")
+
+Full code:
+
+def add_record(records):
+    name = input("Enter student name: ")
+    marks = int(input(f"Enter marks for {name}: "))
+    records[name] = marks
+    print(f"--- Record added: {name} ({marks} marks) ---")
+
+
+def search_record(records):
+    name = input("Enter student name to search: ")
+    if name in records:
+        print(f"--- Found: {name} has {records[name]} marks ---")
+    else:
+        print(f"--- Error: Record for {name} not found ---")
+
+
+def delete_record(records):
+    name = input("Enter student name to delete: ")
+    if name in records:
+        del records[name]
+        print(f"--- Record for {name} deleted successfully ---")
+    else:
+        print(f"--- Error: Record for {name} not found ---")
+
+
+def display_records(records):
+    if not records:
+        print("--- No records available in the database ---")
+    else:
+        print("\n--- Current Student Records ---")
+        for name, marks in records.items():
+            print(f"Name: {name} | Marks: {marks}")
+
+
+def main():
+    student_records = {}
+
+    while True:
+        print("\n=== Student Record Keeper ===")
+        print("1. Add Record")
+        print("2. Search Record")
+        print("3. Delete Record")
+        print("4. Display All Records")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5) -> ")
+
+        if choice == "1":
+            add_record(student_records)
+        elif choice == "2":
+            search_record(student_records)
+        elif choice == "3":
+            delete_record(student_records)
+        elif choice == "4":
+            display_records(student_records)
+        elif choice == "5":
+            print("Thank you for using student records")
+            break
+        else:
+            print("Invalid choice! Please select between 1 and 5.")
+
+
+if __name__ == "__main__":
+    main()
+
+
+============================================================
+QUICK COMMON SYNTAX SUMMARY
+============================================================
+
+print():
+print("Hello")
+
+input():
+name = input("Enter name: ")
+
+int input:
+num = int(input("Enter number: "))
+
+float input:
+price = float(input("Enter price: "))
+
+if-elif-else:
+if condition:
+    statement
+elif condition:
+    statement
+else:
+    statement
+
+for loop:
+for i in range(start, end):
+    statement
+
+while loop:
+while condition:
+    statement
+
+while True:
+while True:
+    statement
+    if condition:
+        break
+
+function:
+def function_name(parameters):
+    return value
+
+class:
+class ClassName:
+    def __init__(self):
+        statement
+
+list:
+items = ["a", "b", "c"]
+
+dictionary:
+data = {"key": "value"}
+
+file:
+with open("file.txt", "r") as f:
+    print(f.read())
+
+try-except:
+try:
+    statement
+except Exception as e:
+    print(e)
+
+import:
+import module_name
+
+alias import:
+import module_name as short_name
