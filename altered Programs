@@ -1,0 +1,1221 @@
+CO2217 PYTHON PRACTICALS — POSSIBLE PROGRAM MODIFICATIONS WITH WHY
+Exp 1 to Exp 12
+Purpose: Use this as a viva/practical quick-help list. These are common changes teachers may ask in the given programs.
+
+================================================================================
+EXPERIMENT 1 — EVEN/ODD + MULTIPLICATION TABLE
+Original idea: Accept a number, check even/odd, print multiplication table 1 to 10.
+================================================================================
+
+1) Print table up to user-given limit
+Why: Instead of fixed 1 to 10, user controls the range.
+
+Code:
+num = int(input("Enter number: "))
+limit = int(input("Enter table limit: "))
+
+for i in range(1, limit + 1):
+    print(num, "x", i, "=", num * i)
+
+
+2) Check whether number is positive, negative, or zero
+Why: Adds one more if-elif-else condition check.
+
+Code:
+num = int(input("Enter number: "))
+
+if num > 0:
+    print("Positive number")
+elif num < 0:
+    print("Negative number")
+else:
+    print("Zero")
+
+
+3) Check even/odd for multiple numbers
+Why: Uses loop with list input instead of one number.
+
+Code:
+numbers = list(map(int, input("Enter numbers: ").split()))
+
+for num in numbers:
+    if num % 2 == 0:
+        print(num, "is Even")
+    else:
+        print(num, "is Odd")
+
+
+4) Print only even numbers from 1 to n
+Why: Uses modulus condition inside loop.
+
+Code:
+n = int(input("Enter limit: "))
+
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        print(i)
+
+
+5) Print multiplication table in reverse order
+Why: Shows use of range() with negative step.
+
+Code:
+num = int(input("Enter number: "))
+
+for i in range(10, 0, -1):
+    print(num, "x", i, "=", num * i)
+
+
+================================================================================
+EXPERIMENT 2 — LIST + DICTIONARY + HIGHEST MARKS
+Original idea: Store student names/marks and find topper.
+================================================================================
+
+1) Take student names and marks from user
+Why: Makes dictionary dynamic instead of fixed values.
+
+Code:
+students = {}
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    name = input("Enter name: ")
+    marks = int(input("Enter marks: "))
+    students[name] = marks
+
+print(students)
+
+
+2) Find student with lowest marks
+Why: Same logic as highest, but using min().
+
+Code:
+students = {"Soham": 78, "Sahil": 72, "Rahul": 92, "Riya": 91}
+
+lowest_student = min(students, key=students.get)
+lowest_marks = students[lowest_student]
+
+print("Lowest marks:", lowest_marks)
+print("Student:", lowest_student)
+
+
+3) Sort students by marks in ascending order
+Why: Useful when asked to arrange records from lowest to highest.
+
+Code:
+students = {"Soham": 78, "Sahil": 72, "Rahul": 92, "Riya": 91}
+
+sorted_students = sorted(students.items(), key=lambda x: x[1])
+
+for name, marks in sorted_students:
+    print(name, marks)
+
+
+4) Sort students by marks in descending order
+Why: Shows topper first.
+
+Code:
+students = {"Soham": 78, "Sahil": 72, "Rahul": 92, "Riya": 91}
+
+sorted_students = sorted(students.items(), key=lambda x: x[1], reverse=True)
+
+for name, marks in sorted_students:
+    print(name, marks)
+
+
+5) Search for a student
+Why: Uses membership check with dictionary key.
+
+Code:
+students = {"Soham": 78, "Sahil": 72, "Rahul": 92}
+
+name = input("Enter name to search: ")
+
+if name in students:
+    print(name, "has marks", students[name])
+else:
+    print("Student not found")
+
+
+6) Calculate average marks
+Why: Uses sum() and len().
+
+Code:
+students = {"Soham": 78, "Sahil": 72, "Rahul": 92}
+
+average = sum(students.values()) / len(students)
+print("Average marks:", average)
+
+
+================================================================================
+EXPERIMENT 3 — SIMPLE INTEREST + FACTORIAL USING RECURSION
+Original idea: Function with parameters + recursive factorial.
+================================================================================
+
+1) Calculate compound interest
+Why: Teacher may ask difference between simple and compound interest.
+
+Code:
+def compound_interest(p, r, t):
+    amount = p * (1 + r / 100) ** t
+    return amount - p
+
+p = float(input("Enter principal: "))
+r = float(input("Enter rate: "))
+t = int(input("Enter time: "))
+
+print("Compound Interest:", compound_interest(p, r, t))
+
+
+2) Factorial without recursion
+Why: Shows iterative logic using for loop.
+
+Code:
+num = int(input("Enter number: "))
+fact = 1
+
+for i in range(1, num + 1):
+    fact = fact * i
+
+print("Factorial:", fact)
+
+
+3) Handle negative factorial input
+Why: Factorial is not defined for negative numbers.
+
+Code:
+def factorial(n):
+    if n < 0:
+        return "Factorial not possible for negative number"
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+num = int(input("Enter number: "))
+print(factorial(num))
+
+
+4) Function to calculate area of circle
+Why: Another common function-with-parameter modification.
+
+Code:
+def area_circle(radius):
+    return 3.14 * radius * radius
+
+r = float(input("Enter radius: "))
+print("Area:", area_circle(r))
+
+
+5) Return value instead of directly printing
+Why: Good programming practice because returned value can be reused.
+
+Code:
+def simple_interest(p, r, t):
+    return (p * r * t) / 100
+
+si = simple_interest(10000, 5, 2)
+print("Simple Interest:", si)
+
+
+================================================================================
+EXPERIMENT 4 — USER-DEFINED MODULE + DATE OPERATIONS
+Original idea: math_utils.py with square/cube + age/day/next birthday.
+================================================================================
+
+1) Add more functions in module
+Why: Shows module reusability.
+
+math_utils.py:
+def square(n):
+    return n * n
+
+def cube(n):
+    return n * n * n
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+
+main.py:
+import math_utils
+
+print(math_utils.add(10, 5))
+print(math_utils.subtract(10, 5))
+
+
+2) Import only selected functions
+Why: Avoids writing module name every time.
+
+Code:
+from math_utils import square, cube
+
+num = int(input("Enter number: "))
+print(square(num))
+print(cube(num))
+
+
+3) Handle wrong date format
+Why: Prevents program crash if user enters invalid date.
+
+Code:
+from datetime import datetime
+
+try:
+    dob = input("Enter DOB in DD-MM-YYYY format: ")
+    birthdate = datetime.strptime(dob, "%d-%m-%Y")
+    print("Valid date:", birthdate)
+except ValueError:
+    print("Invalid date format")
+
+
+4) Display day of week
+Why: Uses strftime() to convert date into readable weekday.
+
+Code:
+from datetime import datetime
+
+dob = input("Enter DOB DD-MM-YYYY: ")
+birthdate = datetime.strptime(dob, "%d-%m-%Y")
+
+print("Day born:", birthdate.strftime("%A"))
+
+
+5) Calculate age correctly
+Why: Age should reduce by 1 if birthday has not occurred this year.
+
+Code:
+from datetime import date, datetime
+
+dob = input("Enter DOB DD-MM-YYYY: ")
+birthdate = datetime.strptime(dob, "%d-%m-%Y").date()
+today = date.today()
+
+age = today.year - birthdate.year
+
+if (today.month, today.day) < (birthdate.month, birthdate.day):
+    age -= 1
+
+print("Age:", age)
+
+
+================================================================================
+EXPERIMENT 5 — CLASS AND OBJECT
+Original idea: Create Student class with name and roll number, display details.
+================================================================================
+
+1) Add marks attribute
+Why: Expands class to store more student details.
+
+Code:
+class Student:
+    def __init__(self, name, roll, marks):
+        self.name = name
+        self.roll = roll
+        self.marks = marks
+
+    def display(self):
+        print("Name:", self.name)
+        print("Roll:", self.roll)
+        print("Marks:", self.marks)
+
+s1 = Student("Rahul", 12, 85)
+s1.display()
+
+
+2) Take object data from user
+Why: Makes object creation dynamic.
+
+Code:
+class Student:
+    def __init__(self, name, roll):
+        self.name = name
+        self.roll = roll
+
+    def display(self):
+        print("Name:", self.name)
+        print("Roll:", self.roll)
+
+name = input("Enter name: ")
+roll = int(input("Enter roll number: "))
+
+s1 = Student(name, roll)
+s1.display()
+
+
+3) Create multiple student objects
+Why: Shows list of objects.
+
+Code:
+class Student:
+    def __init__(self, name, roll):
+        self.name = name
+        self.roll = roll
+
+    def display(self):
+        print(self.name, self.roll)
+
+students = []
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    name = input("Enter name: ")
+    roll = int(input("Enter roll: "))
+    students.append(Student(name, roll))
+
+for s in students:
+    s.display()
+
+
+4) Add method to check pass/fail
+Why: Shows behavior inside class.
+
+Code:
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+    def result(self):
+        if self.marks >= 40:
+            print(self.name, "Pass")
+        else:
+            print(self.name, "Fail")
+
+s1 = Student("Riya", 75)
+s1.result()
+
+
+5) Update student marks
+Why: Shows that object attributes can be changed.
+
+Code:
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+s1 = Student("Soham", 70)
+s1.marks = 90
+
+print(s1.name, s1.marks)
+
+
+================================================================================
+EXPERIMENT 6 — FILE HANDLING + EXCEPTION HANDLING
+Original idea: Write user string into file, read it back, handle errors.
+================================================================================
+
+1) Write instead of append
+Why: 'w' replaces old content. 'a' adds to old content.
+
+Code:
+text = input("Enter text: ")
+
+with open("data.txt", "w") as f:
+    f.write(text)
+
+print("Data written successfully")
+
+
+2) Append multiple lines
+Why: Adds new data without deleting old data.
+
+Code:
+text = input("Enter text: ")
+
+with open("data.txt", "a") as f:
+    f.write(text + "\n")
+
+print("Data appended successfully")
+
+
+3) Read file line by line
+Why: Useful for large files.
+
+Code:
+try:
+    with open("data.txt", "r") as f:
+        for line in f:
+            print(line.strip())
+except FileNotFoundError:
+    print("File not found")
+
+
+4) Count words in a file
+Why: Common modification using string split().
+
+Code:
+try:
+    with open("data.txt", "r") as f:
+        data = f.read()
+        words = data.split()
+        print("Word count:", len(words))
+except FileNotFoundError:
+    print("File not found")
+
+
+5) Count characters in a file
+Why: Uses len() on file content.
+
+Code:
+try:
+    with open("data.txt", "r") as f:
+        data = f.read()
+        print("Character count:", len(data))
+except FileNotFoundError:
+    print("File not found")
+
+
+6) Use specific exception instead of plain except
+Why: Better than using general except.
+
+Code:
+try:
+    with open("data.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("File does not exist")
+except IOError:
+    print("Input/output error occurred")
+
+
+================================================================================
+EXPERIMENT 7 — REGULAR EXPRESSIONS
+Original idea: Validate email, extract mobile numbers, replace whitespace.
+================================================================================
+
+1) Validate mobile number
+Why: Checks if mobile number has 10 digits and starts with 6-9.
+
+Code:
+import re
+
+mobile = input("Enter mobile number: ")
+pattern = r'^[6-9]\d{9}$'
+
+if re.match(pattern, mobile):
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")
+
+
+2) Extract all email IDs from text
+Why: Uses re.findall() for pattern searching.
+
+Code:
+import re
+
+text = "Contact abc@gmail.com and xyz@yahoo.com"
+pattern = r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
+
+emails = re.findall(pattern, text)
+print(emails)
+
+
+3) Replace whitespace with hyphen
+Why: Converts spaces/tabs/newlines into hyphen.
+
+Code:
+import re
+
+sentence = input("Enter sentence: ")
+result = re.sub(r'\s+', '-', sentence)
+
+print(result)
+
+
+4) Check if string contains only alphabets
+Why: Validates name-like input.
+
+Code:
+import re
+
+name = input("Enter name: ")
+
+if re.match(r'^[A-Za-z]+$', name):
+    print("Only alphabets")
+else:
+    print("Invalid name")
+
+
+5) Extract numbers from a sentence
+Why: Useful for text processing.
+
+Code:
+import re
+
+text = "I have 2 pens and 45 books"
+numbers = re.findall(r'\d+', text)
+
+print(numbers)
+
+
+6) Remove extra spaces
+Why: Cleans text input.
+
+Code:
+import re
+
+text = "Hello     world     Python"
+cleaned = re.sub(r'\s+', ' ', text)
+
+print(cleaned)
+
+
+================================================================================
+EXPERIMENT 8 — NUMPY ARRAY
+Original idea: Create NumPy array, addition, mean, sorting.
+================================================================================
+
+1) Take NumPy array from user
+Why: Makes array dynamic.
+
+Code:
+import numpy as np
+
+arr = np.array(list(map(int, input("Enter elements: ").split())))
+print(arr)
+
+
+2) Sort array in ascending order
+Why: Arranges elements smallest to largest.
+
+Code:
+import numpy as np
+
+arr = np.array([12, 4, 15, 8, 20])
+print(np.sort(arr))
+
+
+3) Sort array in descending order
+Why: Reverse of ascending sorted array.
+
+Code:
+import numpy as np
+
+arr = np.array([12, 4, 15, 8, 20])
+sorted_arr = np.sort(arr)[::-1]
+
+print(sorted_arr)
+
+
+4) Find maximum and minimum
+Why: Uses np.max() and np.min().
+
+Code:
+import numpy as np
+
+arr = np.array([12, 4, 15, 8, 20])
+
+print("Maximum:", np.max(arr))
+print("Minimum:", np.min(arr))
+
+
+5) Add two arrays
+Why: Demonstrates element-wise addition.
+
+Code:
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([10, 20, 30, 40, 50])
+
+print(a + b)
+
+
+6) Multiply array by scalar
+Why: Every element gets multiplied.
+
+Code:
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+print(arr * 2)
+
+
+================================================================================
+EXPERIMENT 9 — PANDAS DATAFRAME
+Original idea: Create DataFrame from employee names/salaries and average salary.
+================================================================================
+
+1) Sort DataFrame by salary ascending
+Why: Shows lowest salary first.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+df_sorted = df.sort_values(by="Salary")
+
+print(df_sorted)
+
+
+2) Sort DataFrame by salary descending
+Why: Shows highest salary first.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+df_sorted = df.sort_values(by="Salary", ascending=False)
+
+print(df_sorted)
+
+
+3) Find highest salary employee
+Why: idxmax() gives row index of maximum salary.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+
+highest = df.loc[df["Salary"].idxmax()]
+print(highest)
+
+
+4) Filter salary greater than 75000
+Why: Shows conditional filtering in Pandas.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+
+filtered = df[df["Salary"] > 75000]
+print(filtered)
+
+
+5) Add bonus column
+Why: Shows how to create a new column.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+df["Bonus"] = df["Salary"] * 0.10
+
+print(df)
+
+
+6) Calculate total salary
+Why: Uses sum() function.
+
+Code:
+import pandas as pd
+
+data = {
+    "Employee_Name": ["Soham", "Sahil", "Rahul", "Riya"],
+    "Salary": [72000, 75000, 78000, 71000]
+}
+
+df = pd.DataFrame(data)
+
+print("Total Salary:", df["Salary"].sum())
+
+
+================================================================================
+EXPERIMENT 10 — MATPLOTLIB BAR CHART
+Original idea: Draw bar chart of 5 subjects with labels and title.
+================================================================================
+
+1) Sort plotted graph in ascending order
+Why: Marks and subjects must be sorted together so labels do not mismatch.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+data = list(zip(subjects, marks))
+data.sort(key=lambda x: x[1])
+
+subjects_sorted, marks_sorted = zip(*data)
+
+plt.bar(subjects_sorted, marks_sorted)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks in Ascending Order")
+plt.show()
+
+
+2) Sort plotted graph in descending order
+Why: Highest marks appear first.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+data = list(zip(subjects, marks))
+data.sort(key=lambda x: x[1], reverse=True)
+
+subjects_sorted, marks_sorted = zip(*data)
+
+plt.bar(subjects_sorted, marks_sorted)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks in Descending Order")
+plt.show()
+
+
+3) Draw horizontal bar chart
+Why: Useful when names are long.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.barh(subjects, marks)
+plt.xlabel("Marks")
+plt.ylabel("Subjects")
+plt.title("Horizontal Bar Chart")
+plt.show()
+
+
+4) Draw line chart instead of bar chart
+Why: Shows trend-like visualization.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.plot(subjects, marks, marker="o")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Line Chart")
+plt.show()
+
+
+5) Draw pie chart
+Why: Shows percentage share.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.pie(marks, labels=subjects, autopct="%1.1f%%")
+plt.title("Marks Distribution")
+plt.show()
+
+
+6) Add grid to graph
+Why: Makes values easier to read.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.bar(subjects, marks)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks Chart")
+plt.grid(True)
+plt.show()
+
+
+7) Save graph as image
+Why: Useful for assignment output.
+
+Code:
+import matplotlib.pyplot as plt
+
+subjects = ["Math", "SE", "OE-II", "Python", "Java"]
+marks = [85, 78, 92, 88, 95]
+
+plt.bar(subjects, marks)
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.title("Marks Chart")
+plt.savefig("marks_chart.png")
+plt.show()
+
+
+================================================================================
+EXPERIMENT 11 — OS MODULE FILE EXISTENCE CHECK
+Original idea: Accept filenames and check which exist in current directory.
+================================================================================
+
+1) Check whether path is file or folder
+Why: os.path.exists() only says exists; isfile/isdir gives type.
+
+Code:
+import os
+
+path = input("Enter path: ")
+
+if os.path.isfile(path):
+    print("It is a file")
+elif os.path.isdir(path):
+    print("It is a directory")
+else:
+    print("Path does not exist")
+
+
+2) List all files in current directory
+Why: Uses os.listdir().
+
+Code:
+import os
+
+files = os.listdir()
+
+for f in files:
+    print(f)
+
+
+3) Check file size
+Why: Uses os.path.getsize().
+
+Code:
+import os
+
+filename = input("Enter filename: ")
+
+if os.path.exists(filename):
+    print("Size:", os.path.getsize(filename), "bytes")
+else:
+    print("File not found")
+
+
+4) Show absolute path
+Why: Converts relative filename into full path.
+
+Code:
+import os
+
+filename = input("Enter filename: ")
+
+if os.path.exists(filename):
+    print(os.path.abspath(filename))
+else:
+    print("File not found")
+
+
+5) Check multiple filenames separated by comma
+Why: Allows comma-separated input.
+
+Code:
+import os
+
+user_input = input("Enter filenames separated by comma: ")
+files = [name.strip() for name in user_input.split(",")]
+
+for filename in files:
+    if os.path.exists(filename):
+        print(filename, "exists")
+    else:
+        print(filename, "does not exist")
+
+
+6) Create file if it does not exist
+Why: Adds file creation logic.
+
+Code:
+import os
+
+filename = input("Enter filename: ")
+
+if os.path.exists(filename):
+    print("File already exists")
+else:
+    open(filename, "w").close()
+    print("File created")
+
+
+================================================================================
+EXPERIMENT 12 — STUDENT RECORD KEEPER USING DICTIONARY
+Original idea: Add, search, delete records using functions.
+================================================================================
+
+1) Update marks
+Why: Real record keeper should allow editing.
+
+Code:
+records = {"Soham": 78, "Rahul": 92}
+
+name = input("Enter student name: ")
+
+if name in records:
+    new_marks = int(input("Enter new marks: "))
+    records[name] = new_marks
+    print("Record updated")
+else:
+    print("Student not found")
+
+print(records)
+
+
+2) Display all records sorted by marks
+Why: Shows ranked result.
+
+Code:
+records = {"Soham": 78, "Rahul": 92, "Riya": 85}
+
+sorted_records = sorted(records.items(), key=lambda x: x[1], reverse=True)
+
+for name, marks in sorted_records:
+    print(name, marks)
+
+
+3) Find topper
+Why: Same as max dictionary logic.
+
+Code:
+records = {"Soham": 78, "Rahul": 92, "Riya": 85}
+
+topper = max(records, key=records.get)
+
+print("Topper:", topper)
+print("Marks:", records[topper])
+
+
+4) Prevent duplicate record
+Why: Avoids overwriting existing student accidentally.
+
+Code:
+records = {}
+
+name = input("Enter name: ")
+
+if name in records:
+    print("Record already exists")
+else:
+    marks = int(input("Enter marks: "))
+    records[name] = marks
+    print("Record added")
+
+
+5) Delete all records
+Why: Clears dictionary.
+
+Code:
+records = {"Soham": 78, "Rahul": 92}
+
+records.clear()
+print("All records deleted")
+
+
+6) Menu-driven update option
+Why: Adds one more CRUD operation.
+
+Code:
+def update_record(records):
+    name = input("Enter student name to update: ")
+    if name in records:
+        marks = int(input("Enter new marks: "))
+        records[name] = marks
+        print("Record updated")
+    else:
+        print("Record not found")
+
+
+================================================================================
+COMMON SYNTAX MODIFICATIONS FOR ALL PROGRAMS
+================================================================================
+
+1) if block
+Why: Used when one condition must be checked.
+
+Syntax:
+if condition:
+    statement
+
+
+2) if-else block
+Why: Used when there are two possibilities.
+
+Syntax:
+if condition:
+    statement
+else:
+    statement
+
+
+3) if-elif-else block
+Why: Used when there are multiple conditions.
+
+Syntax:
+if condition1:
+    statement
+elif condition2:
+    statement
+else:
+    statement
+
+
+4) for loop
+Why: Used when number of repetitions is known.
+
+Syntax:
+for i in range(start, end):
+    statement
+
+
+5) while loop
+Why: Used when program should continue until condition becomes false.
+
+Syntax:
+while condition:
+    statement
+
+
+6) function
+Why: Reuses code and avoids repetition.
+
+Syntax:
+def function_name(parameters):
+    statements
+    return value
+
+
+7) class
+Why: Groups data and functions together.
+
+Syntax:
+class ClassName:
+    def __init__(self):
+        statements
+
+    def method_name(self):
+        statements
+
+
+8) try-except
+Why: Handles runtime errors safely.
+
+Syntax:
+try:
+    risky_code
+except ExceptionName:
+    error_message
+
+
+9) list
+Why: Stores multiple values in order.
+
+Syntax:
+my_list = [10, 20, 30]
+
+
+10) dictionary
+Why: Stores key-value pairs.
+
+Syntax:
+my_dict = {"name": "Rahul", "marks": 90}
+
+
+11) input
+Why: Takes value from user.
+
+Syntax:
+name = input("Enter name: ")
+num = int(input("Enter number: "))
+
+
+12) import library/module
+Why: Uses extra functionality from Python libraries.
+
+Syntax:
+import module_name
+from module_name import function_name
+
+
+================================================================================
+IMPORTANT EXAM/VIVA LOGIC TO REMEMBER
+================================================================================
+
+1) Sort graph/data safely:
+Use zip() when two lists are connected.
+
+Example:
+data = list(zip(names, marks))
+data.sort(key=lambda x: x[1])
+names, marks = zip(*data)
+
+Why:
+Because marks and names must move together.
+
+2) Sort dictionary by values:
+sorted_data = sorted(my_dict.items(), key=lambda x: x[1])
+
+Why:
+Dictionary stores data as key-value pairs. x[1] means value.
+
+3) Find max value key in dictionary:
+topper = max(students, key=students.get)
+
+Why:
+students.get gives marks for each name.
+
+4) Read and write file:
+with open("data.txt", "w") as f:
+    f.write("Hello")
+
+Why:
+with automatically closes the file.
+
+5) Regular expression:
+re.findall(pattern, text)
+
+Why:
+Finds all matching patterns from text.
+
+6) DataFrame filtering:
+df[df["Salary"] > 75000]
+
+Why:
+Returns only rows where condition is true.
+
+7) NumPy sorting:
+np.sort(arr)
+
+Why:
+Sorts array elements in ascending order.
+
+8) Matplotlib show graph:
+plt.show()
+
+Why:
+Displays the plotted graph window.
